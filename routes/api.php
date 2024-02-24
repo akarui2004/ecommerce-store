@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/", function() {
-    return response()->json(["status" => true]);
+    return redirect("/status");
+});
+
+Route::get("/status", function() {
+    return response()->json(["status" => true, "tz" => Carbon::now()->getTimezone()->getName()]);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
