@@ -45,3 +45,13 @@ services:
       - "5454:5432"
     networks:
       - estore
+  redis:
+    image: redis:latest
+    restart: always
+    volumes:
+      - ./.docker/volumes/redis:/data
+      - ./.docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - "7379:6379"
+    networks:
+      - estore
