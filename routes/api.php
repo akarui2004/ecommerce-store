@@ -23,6 +23,8 @@ Route::get("/status", function() {
     return response()->json(["status" => true, "tz" => Carbon::now()->getTimezone()->getName()]);
 });
 
+//jwt authentication
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
