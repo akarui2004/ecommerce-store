@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Route::get("/status", function() {
 });
 
 //jwt authentication
+Route::prefix('oauth')->group(function() {
+    Route::post('/access_token', [AuthController::class, 'accessToken']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
