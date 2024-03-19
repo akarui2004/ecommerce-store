@@ -16,7 +16,15 @@ class AuthController extends ApiController {
             return $this->unauthorizedResponse('Invalid credentials');
         }
 
-        //issuer the token
+        //issuer token
+        $jwtToken = [
+            'iss' => config('app.name'), // issuer
+            'exp' => null, // expiry
+            'sub' => null, // subject
+            'iat' => null, // issue at
+            'scp' => null, // scope
+            'uid' => null, // User.id
+        ];
 
         return response()->json($credentials, 200);
     }

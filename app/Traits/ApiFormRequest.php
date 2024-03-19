@@ -7,7 +7,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 trait ApiFormRequest
 {
-    protected function failedValidation(Validator $validator) {
+    protected function failedValidation(Validator $validator): void
+    {
         throw new HttpResponseException(response()->json([
             'message' => 'The given data was invalid.',
             'errors' => $validator->errors(),
